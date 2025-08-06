@@ -269,7 +269,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Search and Filters */}
-        <div className="card mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="flex-1">
@@ -306,7 +306,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
                   <select
                     value={filters.category || ''}
                     onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value as ExpenseCategory || undefined }))}
-                    className="input"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   >
                     <option value="">All Categories</option>
                     {EXPENSE_CATEGORIES.map(category => (
@@ -324,7 +324,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
                   <select
                     value={filters.status || ''}
                     onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value as ExpenseStatus || undefined }))}
-                    className="input"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   >
                     <option value="">All Status</option>
                     <option value="pending">Pending</option>
@@ -350,7 +350,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
                           start: e.target.value 
                         } 
                       }))}
-                      className="input text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
                     />
                     <input
                       type="date"
@@ -362,7 +362,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
                           end: e.target.value 
                         } 
                       }))}
-                      className="input text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
                     />
                   </div>
                 </div>
@@ -379,7 +379,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
         </div>
 
         {/* Expenses List */}
-        <div className="card">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           {filteredAndSortedExpenses.length === 0 ? (
             <div className="text-center py-8 text-gray-500 dark:text-gray-400">
               <p>No expenses found</p>

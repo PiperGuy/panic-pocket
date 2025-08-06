@@ -4,6 +4,7 @@ import { AddExpense } from './components/AddExpense';
 import { CalendarView } from './components/CalendarView';
 import { ListView } from './components/ListView';
 import { Settings } from './components/Settings';
+import { ThemeProvider } from './components/ThemeProvider';
 import { useExpenseStore } from './store/expenseStore';
 
 type View = 'dashboard' | 'add-expense' | 'calendar' | 'list' | 'settings';
@@ -62,9 +63,11 @@ function App() {
   };
 
   return (
-    <div className="App">
-      {renderView()}
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        {renderView()}
+      </div>
+    </ThemeProvider>
   );
 }
 
