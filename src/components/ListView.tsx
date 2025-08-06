@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Search, Filter, SortAsc, SortDesc, Download, Upload, MoreVertical } from 'lucide-react';
+import { ArrowLeft, Search, Filter, SortAsc, SortDesc, Download, Upload } from 'lucide-react';
 import { useExpenseStore } from '../store/expenseStore';
-import { formatCurrency, formatDate, formatRelativeDate, getUrgencyLevel, getUrgencyColor, getUrgencyIcon } from '../utils/dateUtils';
+import { formatCurrency, formatDate, formatRelativeDate, getUrgencyLevel, getUrgencyIcon } from '../utils/dateUtils';
 import type { ExpenseInstance, ExpenseCategory, ExpenseStatus, FilterOptions } from '../types';
 
 interface ListViewProps {
@@ -38,7 +38,7 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
   const [sortField, setSortField] = useState<SortField>('dueDate');
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedExpense, setSelectedExpense] = useState<ExpenseInstance | null>(null);
+
 
   const getExpenseName = (instance: ExpenseInstance) => {
     return expenses.find(e => e.id === instance.expenseId)?.name || 'Unknown Expense';
@@ -79,11 +79,11 @@ export const ListView: React.FC<ListViewProps> = ({ onBack }) => {
     }
 
     // Apply date range filter
-    if (filters.dateRange) {
+    if (filters.dateRange && filters.dateRange.start && filters.dateRange.end) {
       filtered = filtered.filter(instance => {
         const dueDate = new Date(instance.dueDate);
-        const start = new Date(filters.dateRange!.start);
-        const end = new Date(filters.dateRange!.end);
+        const start = new Date(filters.dateRange!.start!);
+        const end = new Date(filters.dateRange!.end!);
         return dueDate >= start && dueDate <= end;
       });
     }

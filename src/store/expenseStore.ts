@@ -1,12 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
-import { format, addDays, addWeeks, addMonths, addYears, isAfter, isBefore, differenceInDays } from 'date-fns';
+import { format, addDays, addWeeks, addMonths, addYears, isAfter, isBefore } from 'date-fns';
 import type { 
   Expense, 
   ExpenseInstance, 
   ExpenseStatus, 
-  RecurrenceType, 
   AppSettings, 
   FilterOptions 
 } from '../types';
@@ -173,7 +172,7 @@ export const useExpenseStore = create<ExpenseState>()(
         set((state) => ({
           expenseInstances: state.expenseInstances.map(instance =>
             instance.id === instanceId
-              ? { ...instance, status: 'snoozed' as ExpenseStatus, snoozedUntil }
+              ? { ...instance, status: 'snoozed' as ExpenseStatus, snoozedUntil: snoozeUntil }
               : instance
           )
         }));
@@ -261,11 +260,11 @@ export const useExpenseStore = create<ExpenseState>()(
           filtered = filtered.filter(instance => instance.status === filters.status);
         }
 
-        if (filters.dateRange) {
+        if (filters.dateRange && filters.dateRange.start && filters.dateRange.end) {
           filtered = filtered.filter(instance => {
             const dueDate = new Date(instance.dueDate);
-            const start = new Date(filters.dateRange!.start);
-            const end = new Date(filters.dateRange!.end);
+            const start = new Date(filters.dateRange!.start!);
+            const end = new Date(filters.dateRange!.end!);
             return dueDate >= start && dueDate <= end;
           });
         }
