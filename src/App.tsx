@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { AddExpense } from './components/AddExpense';
 import { CalendarView } from './components/CalendarView';

@@ -69,8 +69,8 @@ export interface FilterOptions {
   category?: ExpenseCategory;
   status?: ExpenseStatus;
   dateRange?: {
-    start: string;
-    end: string;
+    start?: string;
+    end?: string;
   };
   search?: string;
 }

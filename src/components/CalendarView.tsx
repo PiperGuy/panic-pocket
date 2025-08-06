@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 import { useExpenseStore } from '../store/expenseStore';
-import { formatCurrency, formatDate, getUrgencyLevel, getUrgencyColor, getUrgencyIcon, getMonthName, getMonthRange } from '../utils/dateUtils';
+import { formatCurrency, formatDate, getUrgencyLevel, getUrgencyColor, getUrgencyIcon, getMonthName } from '../utils/dateUtils';
 import type { ExpenseInstance, ExpenseCategory, ExpenseStatus } from '../types';
 
 interface CalendarViewProps {
