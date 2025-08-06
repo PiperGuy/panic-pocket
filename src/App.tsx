@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { AddExpense } from './components/AddExpense';
+import { CalendarView } from './components/CalendarView';
+import { ListView } from './components/ListView';
+import { Settings } from './components/Settings';
 import { useExpenseStore } from './store/expenseStore';
 
 type View = 'dashboard' | 'add-expense' | 'calendar' | 'list' | 'settings';
@@ -48,62 +51,11 @@ function App() {
       case 'add-expense':
         return <AddExpense onClose={handleCloseModal} />;
       case 'calendar':
-        return (
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Calendar View
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Calendar view coming soon!
-              </p>
-              <button
-                onClick={handleCloseModal}
-                className="btn-primary"
-              >
-                Back to Dashboard
-              </button>
-            </div>
-          </div>
-        );
+        return <CalendarView onBack={handleCloseModal} />;
       case 'list':
-        return (
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                List View
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                List view coming soon!
-              </p>
-              <button
-                onClick={handleCloseModal}
-                className="btn-primary"
-              >
-                Back to Dashboard
-              </button>
-            </div>
-          </div>
-        );
+        return <ListView onBack={handleCloseModal} />;
       case 'settings':
-        return (
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Settings
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Settings panel coming soon!
-              </p>
-              <button
-                onClick={handleCloseModal}
-                className="btn-primary"
-              >
-                Back to Dashboard
-              </button>
-            </div>
-          </div>
-        );
+        return <Settings onBack={handleCloseModal} />;
       default:
         return null;
     }

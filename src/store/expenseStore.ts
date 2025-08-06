@@ -50,10 +50,74 @@ const defaultSettings: AppSettings = {
   language: 'en'
 };
 
+// Sample data for demonstration
+const sampleExpenses: Expense[] = [
+  {
+    id: '1',
+    name: 'Netflix Subscription',
+    amount: 15.99,
+    firstDueDate: new Date().toISOString().split('T')[0],
+    recurrence: 'monthly',
+    category: 'subscriptions',
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    notes: 'Premium plan'
+  },
+  {
+    id: '2',
+    name: 'Rent Payment',
+    amount: 1200,
+    firstDueDate: new Date().toISOString().split('T')[0],
+    recurrence: 'monthly',
+    category: 'rent',
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    notes: 'Monthly rent payment'
+  },
+  {
+    id: '3',
+    name: 'Electric Bill',
+    amount: 85.50,
+    firstDueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    recurrence: 'monthly',
+    category: 'utilities',
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    notes: 'Monthly electricity bill'
+  },
+  {
+    id: '4',
+    name: 'Car Insurance',
+    amount: 150,
+    firstDueDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    recurrence: 'monthly',
+    category: 'insurance',
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    notes: 'Auto insurance premium'
+  },
+  {
+    id: '5',
+    name: 'Gym Membership',
+    amount: 45,
+    firstDueDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    recurrence: 'monthly',
+    category: 'entertainment',
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    notes: 'Fitness center membership'
+  }
+];
+
 export const useExpenseStore = create<ExpenseState>()(
   persist(
     (set, get) => ({
-      expenses: [],
+      expenses: sampleExpenses,
       expenseInstances: [],
       settings: defaultSettings,
       filters: {},
