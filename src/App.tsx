@@ -4,9 +4,13 @@ import { AddExpense } from './components/AddExpense';
 import { CalendarView } from './components/CalendarView';
 import { ListView } from './components/ListView';
 import { Settings } from './components/Settings';
+import { DataManager } from './components/DataManager';
+import { AnalyticsDashboard } from './components/AnalyticsDashboard';
 import { useExpenseStore } from './store/expenseStore';
+import { analyticsService, AnalyticsEvents } from './services/analyticsService';
+import { notificationService } from './services/notificationService';
 
-type View = 'dashboard' | 'add-expense' | 'calendar' | 'list' | 'settings';
+type View = 'dashboard' | 'add-expense' | 'calendar' | 'list' | 'settings' | 'data-manager' | 'analytics';
 
 function App() {
   const [currentView, setCurrentView] = useState<View>('dashboard');
@@ -33,6 +37,14 @@ function App() {
     setCurrentView('settings');
   };
 
+  const handleViewDataManager = () => {
+    setCurrentView('data-manager');
+  };
+
+  const handleViewAnalytics = () => {
+    setCurrentView('analytics');
+  };
+
   const handleCloseModal = () => {
     setCurrentView('dashboard');
   };
@@ -46,6 +58,8 @@ function App() {
             onViewCalendar={handleViewCalendar}
             onViewList={handleViewList}
             onViewSettings={handleViewSettings}
+            onViewDataManager={handleViewDataManager}
+            onViewAnalytics={handleViewAnalytics}
           />
         );
       case 'add-expense':
@@ -56,6 +70,10 @@ function App() {
         return <ListView onBack={handleCloseModal} />;
       case 'settings':
         return <Settings onBack={handleCloseModal} />;
+      case 'data-manager':
+        return <DataManager onClose={handleCloseModal} />;
+      case 'analytics':
+        return <AnalyticsDashboard onBack={handleCloseModal} />;
       default:
         return null;
     }

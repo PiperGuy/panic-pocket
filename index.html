@@ -6,10 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Panic Pocket - Smart Expense Planner & Tracker. Track, plan, and manage your recurring expenses with ease." />
     <meta name="theme-color" content="#3b82f6" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Panic Pocket - Smart Expense Planner</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

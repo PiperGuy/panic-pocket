@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Calendar, List, Settings } from 'lucide-react';
+import { Plus, Calendar, List, Settings, Download, BarChart3 } from 'lucide-react';
 import { useExpenseStore } from '../store/expenseStore';
 import { formatCurrency, formatRelativeDate, getUrgencyLevel, getUrgencyColor, getUrgencyIcon } from '../utils/dateUtils';
 import type { ExpenseInstance } from '../types';
@@ -9,13 +9,17 @@ interface DashboardProps {
   onViewCalendar: () => void;
   onViewList: () => void;
   onViewSettings: () => void;
+  onViewDataManager: () => void;
+  onViewAnalytics: () => void;
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({
   onAddExpense,
   onViewCalendar,
   onViewList,
-  onViewSettings
+  onViewSettings,
+  onViewDataManager,
+  onViewAnalytics
 }) => {
   const { getUpcomingExpenses, getMonthlySummary, markExpenseAsPaid } = useExpenseStore();
   
@@ -61,7 +65,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           <button
             onClick={onAddExpense}
             className="card hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
@@ -84,6 +88,22 @@ export const Dashboard: React.FC<DashboardProps> = ({
           >
             <List className="h-6 w-6 text-primary-600" />
             <span className="font-medium">List View</span>
+          </button>
+          
+          <button
+            onClick={onViewDataManager}
+            className="card hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
+          >
+            <Download className="h-6 w-6 text-primary-600" />
+            <span className="font-medium">Data Manager</span>
+          </button>
+          
+          <button
+            onClick={onViewAnalytics}
+            className="card hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
+          >
+            <BarChart3 className="h-6 w-6 text-primary-600" />
+            <span className="font-medium">Analytics</span>
           </button>
         </div>
 
