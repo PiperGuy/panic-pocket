@@ -121,13 +121,19 @@ Visual urgency indicators:
 
 ---
 
-🔒 F. Sync & Backup
+🔒 F. Data Export/Import & Backup
 
-Secure cloud sync for multi-device use
+Cross-browser data transfer via JSON export/import
 
-Local caching for offline access
+Encrypted export option for sensitive financial data
 
-Optional export of data to CSV or PDF
+Import validation with conflict resolution
+
+One-click transfer between browsers and devices
+
+Local IndexedDB storage with automatic backup
+
+Offline-first approach with no cloud dependencies
 
 
 
@@ -186,15 +192,44 @@ Animations on check-off for satisfaction effect
 
 6. Platform & Tech Stack
 
-MVP Platform: Android + iOS (Flutter or React Native)
+Frontend: React with Vite.js (PWA)
+- Progressive Web App with offline-first approach
+- Mobile-first responsive design
+- shadcn/ui components for consistent design system
+- Service Workers for offline functionality and caching
 
-Backend: Firebase / Supabase / Node.js API
+State Management: Zustand
+- Lightweight, fast state management
+- Perfect for offline-first applications
+- Simple API with TypeScript support
+- Persists state to IndexedDB automatically
 
-Future: Web dashboard with sync
+Data Storage: IndexedDB + Local Storage
+- IndexedDB for complex data structures (expenses, categories, settings)
+- Local Storage for user preferences and app state
+- Offline-first data persistence
+- No external dependencies on cloud services
 
-Storage: Cloud + local fallback
+Browser Workers:
+- Service Workers for caching and offline functionality
+- Web Workers for data processing and export/import operations
+- Background sync for data operations
 
-Analytics: Basic usage analytics (privacy-friendly)
+Data Export/Import:
+- JSON format for cross-browser compatibility
+- Encrypted export option for sensitive data
+- Import validation and conflict resolution
+- One-click transfer between browsers/devices
+
+Design Principles:
+- Mobile-first responsive design
+- Progressive enhancement
+- Accessibility-first approach
+- Dark/light mode support
+- Smooth animations and transitions
+- Intuitive gesture-based interactions
+
+Analytics: Privacy-friendly local analytics (no external tracking)
 
 
 
