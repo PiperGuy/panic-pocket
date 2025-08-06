@@ -166,7 +166,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ onBack }) => {
     const totalAmount = expenses.reduce((sum, instance) => sum + getExpenseAmount(instance), 0);
 
     return (
-      <div className="card mt-6">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mt-6">
         <h3 className="text-lg font-semibold mb-4">
           Expenses for {formatDate(selectedDate)} ({expenses.length} items, {formatCurrency(totalAmount)})
         </h3>
@@ -289,7 +289,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ onBack }) => {
         </div>
 
         {/* Filters */}
-        <div className="card mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -298,7 +298,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ onBack }) => {
               <select
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value as ExpenseCategory | '')}
-                className="input"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               >
                 <option value="">All Categories</option>
                 {EXPENSE_CATEGORIES.map(category => (
@@ -316,7 +316,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ onBack }) => {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value as ExpenseStatus | '')}
-                className="input"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               >
                 <option value="">All Status</option>
                 <option value="pending">Pending</option>
@@ -330,7 +330,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ onBack }) => {
         </div>
 
         {/* Calendar Grid */}
-        <div className="card">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           <div className="grid grid-cols-7 gap-px bg-gray-200 dark:bg-gray-700">
             {/* Day Headers */}
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Download, Upload, Trash2, Moon, Sun, Monitor, Bell, Shield, Database } from 'lucide-react';
 import { useExpenseStore } from '../store/expenseStore';
+import { useTheme } from './ThemeProvider';
 import type { AppSettings } from '../types';
 
 interface SettingsProps {
@@ -9,6 +10,7 @@ interface SettingsProps {
 
 export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
   const { settings, updateSettings, expenses, expenseInstances } = useExpenseStore();
+  const { setTheme } = useTheme();
   const [localSettings, setLocalSettings] = useState<AppSettings>(settings);
   const [showConfirmClear, setShowConfirmClear] = useState(false);
 
@@ -26,19 +28,8 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
 
   const handleSaveSettings = () => {
     updateSettings(localSettings);
-    // Apply theme immediately
-    if (localSettings.theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else if (localSettings.theme === 'light') {
-      document.documentElement.classList.remove('dark');
-    } else {
-      // System theme
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
+    // Apply theme immediately using the theme context
+    setTheme(localSettings.theme);
   };
 
   const handleClearData = () => {
@@ -130,7 +121,7 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Data Statistics */}
-        <div className="card mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center space-x-2">
             <Database className="h-5 w-5" />
             <span>Data Statistics</span>
@@ -170,7 +161,7 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
         </div>
 
         {/* Appearance Settings */}
-        <div className="card mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center space-x-2">
             <Sun className="h-5 w-5" />
             <span>Appearance</span>
@@ -244,7 +235,7 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
               <select
                 value={localSettings.language}
                 onChange={(e) => handleSettingChange('language', e.target.value)}
-                className="input"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               >
                 <option value="en">English</option>
                 <option value="es">Español</option>
@@ -257,7 +248,7 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
         </div>
 
         {/* Notification Settings */}
-        <div className="card mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center space-x-2">
             <Bell className="h-5 w-5" />
             <span>Notifications</span>
@@ -294,7 +285,7 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
                     max="30"
                     value={localSettings.notifications.daysBefore}
                     onChange={(e) => handleSettingChange('notifications', { daysBefore: parseInt(e.target.value) })}
-                    className="input"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   />
                 </div>
 
@@ -340,7 +331,7 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
         </div>
 
         {/* Data Management */}
-        <div className="card mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center space-x-2">
             <Shield className="h-5 w-5" />
             <span>Data Management</span>

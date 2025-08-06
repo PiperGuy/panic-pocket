@@ -1,6 +1,7 @@
 import React from 'react';
-import { Plus, Calendar, List, Settings } from 'lucide-react';
+import { Plus, Calendar, List, Settings, Moon, Sun } from 'lucide-react';
 import { useExpenseStore } from '../store/expenseStore';
+import { useTheme } from './ThemeProvider';
 import { formatCurrency, formatRelativeDate, getUrgencyLevel, getUrgencyColor, getUrgencyIcon } from '../utils/dateUtils';
 import type { ExpenseInstance } from '../types';
 
@@ -18,6 +19,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onViewSettings
 }) => {
   const { getUpcomingExpenses, getMonthlySummary, markExpenseAsPaid } = useExpenseStore();
+  const { setTheme, isDark } = useTheme();
   
   const upcomingExpenses = getUpcomingExpenses(5);
   const monthlySummary = getMonthlySummary();
@@ -49,6 +51,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </div>
             <div className="flex items-center space-x-4">
               <button
+                onClick={() => setTheme(isDark ? 'light' : 'dark')}
+                className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {isDark ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+              </button>
+              <button
                 onClick={onViewSettings}
                 className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
               >
@@ -64,7 +73,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <button
             onClick={onAddExpense}
-            className="card hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
           >
             <Plus className="h-6 w-6 text-primary-600" />
             <span className="font-medium">Add Expense</span>
@@ -72,7 +81,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           
           <button
             onClick={onViewCalendar}
-            className="card hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
           >
             <Calendar className="h-6 w-6 text-primary-600" />
             <span className="font-medium">Calendar View</span>
@@ -80,7 +89,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           
           <button
             onClick={onViewList}
-            className="card hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow flex items-center justify-center space-x-2"
           >
             <List className="h-6 w-6 text-primary-600" />
             <span className="font-medium">List View</span>
@@ -88,7 +97,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         {/* Monthly Summary */}
-        <div className="card mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-8">
           <h2 className="text-lg font-semibold mb-4">This Month's Summary</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="text-center">
@@ -129,7 +138,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         {/* Upcoming Expenses */}
-        <div className="card">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           <h2 className="text-lg font-semibold mb-4">Upcoming Expenses</h2>
           {upcomingExpenses.length === 0 ? (
             <div className="text-center py-8 text-gray-500 dark:text-gray-400">

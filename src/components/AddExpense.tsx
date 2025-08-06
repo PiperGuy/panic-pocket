@@ -156,7 +156,7 @@ export const AddExpense: React.FC<AddExpenseProps> = ({ onClose }) => {
               id="category"
               value={formData.category}
               onChange={(e) => handleInputChange('category', e.target.value)}
-              className="input"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             >
               {EXPENSE_CATEGORIES.map(category => (
                 <option key={category.value} value={category.value}>
@@ -193,7 +193,7 @@ export const AddExpense: React.FC<AddExpenseProps> = ({ onClose }) => {
               id="recurrence"
               value={formData.recurrence}
               onChange={(e) => handleInputChange('recurrence', e.target.value)}
-              className="input"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             >
               {RECURRENCE_OPTIONS.map(option => (
                 <option key={option.value} value={option.value}>
@@ -242,13 +242,13 @@ export const AddExpense: React.FC<AddExpenseProps> = ({ onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="btn-secondary flex-1"
+              className="px-4 py-2 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 flex-1"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="btn-primary flex-1 flex items-center justify-center space-x-2"
+              className="px-4 py-2 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 flex-1 flex items-center justify-center space-x-2"
             >
               <Save className="h-4 w-4" />
               <span>Save Expense</span>
